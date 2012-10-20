@@ -39,7 +39,7 @@ return uiji('#main',function(){$(this)
                 .uiji('p"Thats definitely overkill. I did it just so I\'d have to confront as many kinks as possible. But the great thing about uiji.js is that you can switch between jQuery and plain ol\l HTML when it suits you. Check the source code for more examples."')
                 .uiji('p"uiji.js has been tested in (Mobile) Safari, Chrome, Firefox, and IE7+."')
                 .uiji(linkButton('View Comments on Hacker News','http://www.google.com'))
-                .uiji(linkButton('Fork Me on GitHub','http://www.google.com'))
+                .uiji(linkButton('Fork Me on GitHub','http://www.google.com/https://github.com/aakilfernandes/uiji/'))
              })
         })
     })
@@ -80,7 +80,7 @@ return uiji('#header.emphasis',function(){$(this)
     .uiji('#title',function(){$(this)
         .uiji('a{href=/}"uiji&bull;js"')})
     .uiji('.divider')
-    .uiji('.tagline"No Server? No Problem."')})
+    .uiji('.tagline"uiji.js is jquery in reverse"')})
 }
 
 sectionHeader=function(nameLead,name){
