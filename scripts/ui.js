@@ -15,12 +15,12 @@ return uiji('#main',function(){$(this)
             .uiji(contactForm())})
         .uiji('#content',function(){$(this)
              .uiji('.section',function(){$(this)
-                 .uiji('p"uiji.js (<i>pronounced wee-gee</i>) is jQuery in reverse. We know that we can use jQuery to select elements like such:"')
+                 .uiji('p"We know that we can use jQuery to select elements like so:"')
                  .uiji(snippet("$('#main')  ",'javascript'))
                  .uiji('.divider')
-                 .uiji('p"But now you can use the same syntax to <b>create</b> jQuery elements."')
+                 .uiji('p"But with uiji.js, you can use the same syntax to <b>create</b> jQuery elements."')
                  .uiji(holder('helloWorld',demos.helloWorld))
-                 .uiji('p"Or you can pass in an object. Note that I used \'_class\' for the element\'s class attribute. This is because \'class\' is a reserved word, and using it as a key will cause a crash in older browsers. uiji.js automatically removes any leading underscore."')
+                 .uiji('p"Or you can pass in an object. Note that I used a string \'class\' for instead of a key. This is because \'class\' is a reserved word, and using it as a key will cause a crash in older browsers."')
                  .uiji(holder('objectWorld',demos.objectWorld))
                  .uiji('p"When you\'ve got a lot of html to create, you can use some baked in shortcuts."')
                  .uiji(holder('slimShady',demos.slimShady))
@@ -38,8 +38,8 @@ return uiji('#main',function(){$(this)
                 })
                 .uiji('p"Thats definitely overkill. I did it just so I\'d have to confront as many kinks as possible. But the great thing about uiji.js is that you can switch between jQuery and plain ol\l HTML when it suits you. Check the source code for more examples."')
                 .uiji('p"uiji.js has been tested in (Mobile) Safari, Chrome, Firefox, and IE7+."')
-                .uiji(linkButton('View Comments on Hacker News','http://www.google.com'))
-                .uiji(linkButton('Fork Me on GitHub','http://www.google.com/https://github.com/aakilfernandes/uiji/'))
+                .uiji(linkButton('View Comments on Hacker News','http://news.ycombinator.com/item?id=4678482'))
+                .uiji(linkButton('Fork Me on GitHub','https://github.com/aakilfernandes/uiji/'))
              })
         })
     })
@@ -47,7 +47,7 @@ return uiji('#main',function(){$(this)
 }
 
 linkButton=function(html,href){
-return uiji({tag:'a',_class:'link button emphasis',html:html,href:href})
+return uiji({tag:'a','class':'link button emphasis',html:html,href:href})
 }
 
 colorBar=function(){
@@ -59,7 +59,7 @@ return uiji('.colorBar',function(){
 logo=function(){
 return uiji('a{href=/}',function(){$(this)
     .uiji({
-    _class:'logo',
+    'class':'logo',
     html:
         '<svg version="1.1" class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1655.494px" height="725.373px" viewBox="0 0 1655.494 725.373" enable-background="new 0 0 1655.494 725.373" xml:space="preserve"> \
             <g><g><g><path fill="#007F7B" d="M931.67,391.935c-0.606-62.775,49.806-114.166,112.574-114.775 c62.789-0.589,198.467,111.798,198.467,111.798s-133.496,114.977-196.279,115.561 \
@@ -85,8 +85,8 @@ return uiji('#header.emphasis',function(){$(this)
 
 sectionHeader=function(nameLead,name){
 return uiji('.header.emphasis',function(){$(this)
-        .uiji({_class:'nameLead',html:nameLead})
-        .uiji({_class:'name',html:name})})
+        .uiji({'class':'nameLead',html:nameLead})
+        .uiji({'class':'name',html:name})})
 }
 
 snippet=function(code,language){
@@ -112,13 +112,13 @@ return uiji({tag:'pre',html:uiji.htmlEncode($.trim(code))},function(){
 
 holder=function(id,func){
 var funcString = func.toString();
-return uiji({id:id,_class:'holder'},function(){$(this)
+return uiji({id:id,'class':'holder'},function(){$(this)
     .uiji(snippet(funcString.substring(funcString.indexOf('{')+1,funcString.length-1),'javascript'))
     .uiji(button('Run'),function(){
         $(this).click(func)
     })
     .uiji('.outputTitle',function(){$(this)
-        .uiji({html:'#'+id+' .output:',_class:'emphasis'})  
+        .uiji({html:'#'+id+' .output:','class':'emphasis'})  
     })
     .uiji('.output')
     .uiji('.divider')
@@ -137,7 +137,7 @@ githubRibbon=function(){
 
 demos = {
 helloWorld:function(){$('#helloWorld .output').uiji('p.greeting"Hello World!"')},
-objectWorld:function(){$('#objectWorld .output').uiji({tag:'p',_class:'greeting',html:'Hello Object World!'})},
+objectWorld:function(){$('#objectWorld .output').uiji({tag:'p','class':'greeting',html:'Hello Object World!'})},
 slimShady:function(){$('#slimShady .output')
     .uiji('p{style=font-style:italic;}"May I have your attention please"*2')
     .uiji('a{href=http://en.wikipedia.org/wiki/Eminem|target=blank"}"Will the real Slim Shady please stand up."')
@@ -152,7 +152,7 @@ heirarchy:function(){$('#heirarchy .output')
 timeButton:function(){
 var timeButton = function(time){
 return uiji('.time.button',function(){$(this)
-    .uiji({tag:'input',type:'submit',value:'When was I born?',_class:'emphasis'},function(){$(this)
+    .uiji({tag:'input',type:'submit',value:'When was I born?','class':'emphasis'},function(){$(this)
         .click(function(){alert(time)});
     })})
 }

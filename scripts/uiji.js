@@ -8,7 +8,7 @@ jQuery.fn.uiji = function(input,func){
     }else{
         $(this).append(uiji(input,func));   
     }
-	return $(this);
+    return $(this);
 }
 
 
@@ -134,7 +134,6 @@ var uiji=function(input,func){
 		
 		for(prop in info){
 			var val = info[prop];
-			if(prop.charAt(0)=='_'){prop=prop.substring(1)}
 			switch(prop){
 				case 'text':
 					$el.text(val);
@@ -173,8 +172,6 @@ var uiji=function(input,func){
 	return $elA;
 }
 
-
-
 uiji.htmlEncode = function(value){
   return $('<div/>').text(value).html();
 }
@@ -182,3 +179,5 @@ uiji.htmlEncode = function(value){
 uiji.htmlDecode = function(value){
   return $('<div/>').html(value).text();
 }
+
+

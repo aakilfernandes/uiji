@@ -26,13 +26,13 @@ return uiji('.input',function(){$(this)
 
 button=function(value,isDisabled){
 return uiji('.button',function(){$(this)
-    .uiji({tag:'input',type:'submit',value:value,_class:'emphasis'},function(){
+    .uiji({tag:'input',type:'submit',value:value,'class':'emphasis'},function(){
         if(isDisabled){$(this).attr('disabled','disabled')}
     })})
 }
 
 form=function(classAttr,action,method){
-    return uiji({tag:'form',_class:classAttr,action:action,method:method})
+    return uiji({tag:'form','class':classAttr,action:action,method:method})
 }
 
 emailForm = function(){
