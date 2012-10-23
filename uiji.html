@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="scripts/jquery.snippet.js"></script>
 		<script type="text/javascript" src="scripts/beautify.js"></script>
 		<script type="text/javascript" src="scripts/uiji.js"></script>
+		<script type="text/javascript" src="scripts/uiji.hnComments.js"></script>
 		<script type="text/javascript" src="scripts/googleAnalytics.js"></script>
 		<script type="text/javascript" src="scripts/ui.js"></script>
 		<script type="text/javascript" src="scripts/ui.forms.js"></script>
@@ -15,6 +16,7 @@
 		<link rel="stylesheet" href="style/style.css"/>
 		<link rel="stylesheet" href="style/colorBar.css"/>
 		<link rel="stylesheet" href="style/jquery.snippet.css"/>
+		<link rel="stylesheet" href="style/uiji.hnComments.css"/>
 	</head>
 	<body>
 		<script type="text/javascript">
@@ -47,38 +49,38 @@
 		                })
 		                .uiji('p"Thats definitely overkill. I did it just so I\'d have to confront as many kinks as possible. But the great thing about uiji.js is that you can switch between jQuery and plain ol\l HTML when it suits you. Check the source code for more examples."')
 		                .uiji('p"uiji.js has been tested in (Mobile) Safari, Chrome, Firefox, and IE7+."')
-		                .uiji(linkButton('View Comments on Hacker News','http://news.ycombinator.com/item?id=4678482'))
-		                .uiji(linkButton('Fork Me on GitHub','https://github.com/aakilfernandes/uiji/'))
+		                .uiji('.divider')
+		                .uiji(hnComments(4678482))
 		             })
 		        }
 			}
 		
-			demos = {
-				helloWorld:function(){$('#helloWorld .output').uiji('p.greeting"Hello World!"')},
-				objectWorld:function(){$('#objectWorld .output').uiji({tag:'p','class':'greeting',html:'Hello Object World!'})},
-				slimShady:function(){$('#slimShady .output')
-				    .uiji('p{style=font-style:italic;}"May I have your attention please"*2')
-				    .uiji('a{href=http://en.wikipedia.org/wiki/Eminem|target=blank"}"Will the real Slim Shady please stand up."')
-				},
-				heirarchy:function(){$('#heirarchy .output')
-				    .uiji('.white.block',function(){$(this)
-				        .uiji('.gray.block*2',function(){$(this)
-				            .uiji('.black.block*2')
-				        })
-				    })
-				},
-				timeButton:function(){
-					var timeButton = function(time){
-					return uiji('.time.button',function(){$(this)
-					    .uiji({tag:'input',type:'submit',value:'When was I born?','class':'emphasis'},function(){$(this)
-					        .click(function(){alert(time)});
-					    })})
-					}
-				
-					var time = new Date().getTime();
-					$('#timeButton .output').uiji(timeButton(time))
-				}
-			}
+demos = {
+helloWorld:function(){$('#helloWorld .output').uiji('p.greeting"Hello World!"')},
+objectWorld:function(){$('#objectWorld .output').uiji({tag:'p','class':'greeting',html:'Hello Object World!'})},
+slimShady:function(){$('#slimShady .output')
+    .uiji('p{style=font-style:italic;}"May I have your attention please"*2')
+    .uiji('a{href=http://en.wikipedia.org/wiki/Eminem|target=blank"}"Will the real Slim Shady please stand up."')
+},
+heirarchy:function(){$('#heirarchy .output')
+    .uiji('.white.block',function(){$(this)
+        .uiji('.gray.block*2',function(){$(this)
+            .uiji('.black.block*2')
+        })
+    })
+},
+timeButton:function(){
+	var timeButton = function(time){
+	return uiji('.time.button',function(){$(this)
+	    .uiji({tag:'input',type:'submit',value:'When was I born?','class':'emphasis'},function(){$(this)
+	        .click(function(){alert(time)});
+	    })})
+	}
+
+	var time = new Date().getTime();
+	$('#timeButton .output').uiji(timeButton(time))
+	}
+}
 		</script>
 		<noscript>
 			This is a demo for uiji.js that requires javascript. You can view the repo at
