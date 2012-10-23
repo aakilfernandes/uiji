@@ -37,8 +37,12 @@ var uiji=function(input,func){
 					}else if(prop=='attrC'){
 					    switch(letter){
 					        case '=':
-                                infoC.attrC[attrKey]='';
-                                isAttrKey=false;
+					            if(isAttrKey){
+					                infoC.attrC[attrKey]='';
+                                    isAttrKey=false;   
+					            }else{
+					                infoC.attrC[attrKey]+=letter;
+					            }
                                 break;
                             case '}':
                                 prop='tag';
