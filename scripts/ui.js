@@ -1,47 +1,18 @@
-$(document).ready(function(){
-$('body')
+$(document).ready(function(){$('body')
     .uiji(githubRibbon())
     .uiji(colorBar())
     .uiji(header())
-    .uiji(main())
+    .uiji(main(content()))
     .uiji(colorBar())
 })
 
-main = function(){
+main = function(content){
 return uiji('#main',function(){$(this)
     .uiji('.inner',function(){$(this)
         .uiji('#forms',function(){$(this)
             .uiji(emailForm())
             .uiji(contactForm())})
-        .uiji('#content',function(){$(this)
-             .uiji('.section',function(){$(this)
-                 .uiji('p"We know that we can use jQuery to select elements like so:"')
-                 .uiji(snippet("$('#main')  ",'javascript'))
-                 .uiji('.divider')
-                 .uiji('p"But with uiji.js, you can use the same syntax to <b>create</b> jQuery elements."')
-                 .uiji(holder('helloWorld',demos.helloWorld))
-                 .uiji('p"Or you can pass in an object. Note that I used a string \'class\' for instead of a key. This is because \'class\' is a reserved word, and using it as a key will cause a crash in older browsers."')
-                 .uiji(holder('objectWorld',demos.objectWorld))
-                 .uiji('p"When you\'ve got a lot of html to create, you can use some baked in shortcuts."')
-                 .uiji(holder('slimShady',demos.slimShady))
-                 .uiji('p"You can use callbacks to create heirarchy."')
-                 .uiji(holder('heirarchy',demos.heirarchy))
-                 .uiji('p"Use templates for ease. This demo uses a uiji.js template \'timeButton\'.  Create some timeButtons and click to check when they were created"')
-                 .uiji(holder('timeButton',demos.timeButton))
-                 .uiji('p"How far can you take uiji.js? If you view the source of this page you\'ll see that the entire body was created with jQuery."')
-                 .uiji('p.viewSource',function(){
-                    var $this=$(this);
-                    $.get('',function(data){
-                        window.x=data;
-                        $this.uiji(snippet(data,'html'))
-                    })
-                })
-                .uiji('p"Thats definitely overkill. I did it just so I\'d have to confront as many kinks as possible. But the great thing about uiji.js is that you can switch between jQuery and plain ol\l HTML when it suits you. Check the source code for more examples."')
-                .uiji('p"uiji.js has been tested in (Mobile) Safari, Chrome, Firefox, and IE7+."')
-                .uiji(linkButton('View Comments on Hacker News','http://news.ycombinator.com/item?id=4678482'))
-                .uiji(linkButton('Fork Me on GitHub','https://github.com/aakilfernandes/uiji/'))
-             })
-        })
+        .uiji('#content',function(){$(this).uiji(content)})
     })
 })
 }
@@ -78,15 +49,22 @@ header=function(){
 return uiji('#header.emphasis',function(){$(this)
     .uiji(logo())
     .uiji('#title',function(){$(this)
-        .uiji('a{href=/}"uiji&bull;js"')})
+        .uiji({tag:'a',href:'/',html:page.title})
+    })
     .uiji('.divider')
-    .uiji('.tagline"uiji.js is jquery in reverse"')})
+    .uiji({'class':'tagline',html:page.tagline})
+})
+}
+
+content=function(){
+return uiji('#content',page.contentCallback)
 }
 
 sectionHeader=function(nameLead,name){
 return uiji('.header.emphasis',function(){$(this)
         .uiji({'class':'nameLead',html:nameLead})
-        .uiji({'class':'name',html:name})})
+        .uiji({'class':'name',html:name})
+})
 }
 
 snippet=function(code,language){
@@ -101,7 +79,11 @@ if (navigator.userAgent.indexOf("Firefox")!=-1 && language=='javascript'){//fire
     code = js_beautify(code);
 }
 
-return uiji({tag:'pre',html:uiji.htmlEncode($.trim(code))},function(){
+var htmlEncode = function(value){
+  return $('<div/>').text(value).html();
+}
+
+return uiji({tag:'pre',html:htmlEncode($.trim(code))},function(){
    var $this = $(this);
    //doesn't work : $this.snippet('html',{style:'golden',transparent:true})
    setTimeout(function(){
@@ -126,7 +108,7 @@ return uiji({id:id,'class':'holder'},function(){$(this)
 }
 
 githubRibbon=function(){
-    return uiji('a.githubRibbon{href=https://github.com/aakilfernandes/uiji',function(){$(this)
+    return uiji({tag:'a','class':'githubRibbon',href:'https://github.com/aakilfernandes/'+page.githubRepo},function(){$(this)
         .uiji({
             tag:'img',
             src:'https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png',
@@ -134,6 +116,7 @@ githubRibbon=function(){
         })
     })
 }
+
 
 demos = {
 helloWorld:function(){$('#helloWorld .output').uiji('p.greeting"Hello World!"')},
